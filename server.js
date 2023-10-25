@@ -20,27 +20,43 @@ function init() {
     })
     .then((res) => {
       if (res.starter === "View All Employees") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "Add Employees") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "Update Employees") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "View All Roles") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "Add Role") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "View All Departments") {
-        console.log(`You Chose`, res.starter);
-      }
-      else if (res.starter === "Add Departments") {
-        console.log(`You Chose`, res.starter);
-      } else console.log('See you next time!')
+        viewEmployees(res);
+      } else if (res.starter === "Add Employees") {
+        addEmployees(res);
+      } else if (res.starter === "Update Employees") {
+        updateEmplyees(res);
+      } else if (res.starter === "View All Roles") {
+        viewRoles(res);
+      } else if (res.starter === "Add Role") {
+        addRoles(res);
+      } else if (res.starter === "View All Departments") {
+        viewDepartments(res);
+      } else if (res.starter === "Add Department") {
+        addDepartments(res);
+      } else console.log("See you next time!");
     });
+}
+
+function viewEmployees(res) {
+  console.log(`You Chose`, res.starter);
+}
+function addEmployees(res) {
+  console.log(`You Chose`, res.starter);
+}
+function updateEmplyees(res) {
+  console.log(`You Chose`, res.starter);
+}
+function viewRoles(res) {
+  console.log(`You Chose`, res.starter);
+}
+function addRoles(res) {
+  console.log(`You Chose`, res.starter);
+}
+function viewDepartments(res) {
+  console.log(`You Chose`, res.starter);
+}
+function addDepartments(res) {
+  console.log(`You Chose`, res.starter);
 }
 
 init();
