@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const mysql2 = require("mysql2");
-const PORT = process
+const sequelize = require('./config/connection')
+const PORT = process.env.PORT || 3001;
 
 function init() {
   inquirer
