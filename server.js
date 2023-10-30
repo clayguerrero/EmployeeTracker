@@ -1,7 +1,17 @@
 const inquirer = require("inquirer");
 const mysql2 = require("mysql2");
-const sequelize = require('./config/connection')
 const PORT = process.env.PORT || 3001;
+
+const db = mysql2.createConnection(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: 'Sharks12$',
+    database: 'employee_db'
+  },
+  console.log(`Connected to the employee_db database.`)
+)
+
 
 function init() {
   inquirer
