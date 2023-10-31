@@ -4,18 +4,18 @@ const PORT = process.env.PORT || 3001;
 
 const db = mysql2.createConnection(
   {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'employee_db'
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "employee_db",
   },
   console.log(`Connected to the employee_db database.`)
-)
+);
 
 db.connect((err) => {
   if (err) throw err;
-  init()
-})
+  init();
+});
 
 function init() {
   inquirer
@@ -53,23 +53,38 @@ function init() {
     });
 }
 
-function viewEmployees(res) {
-  console.log(`You Chose`, res.starter);
+function viewEmployees() {
+  const query = "SELECT * FROM employee";
+  db.query(query, (req, res) => {
+    console.table(res);
+    init();
+  });
 }
-function addEmployees(res) {
-  console.log(`You Chose`, res.starter);
+function addEmployees() {
+  const query = "SELECT id, title, FROM role";
+  // db.query(query, (req, res) => {
+  //   console.log
+  // })
 }
 function updateEmplyees(res) {
   console.log(`You Chose`, res.starter);
 }
 function viewRoles(res) {
-  console.log(`You Chose`, res.starter);
+  const query = "SELECT * FROM role";
+  db.query(query, (req, res) => {
+    console.table(res);
+  });
+  init();
 }
 function addRoles(res) {
   console.log(`You Chose`, res.starter);
 }
-function viewDepartments(res) {
-  console.log(`You Chose`, res.starter);
+function viewDepartments() {
+  const query = "SELECT * FROM department";
+  db.query(query, (req, res) => {
+    console.table(res);
+  });
+  init();
 }
 function addDepartments(res) {
   console.log(`You Chose`, res.starter);
