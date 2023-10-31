@@ -17,7 +17,7 @@ This application allows users to creat and update the roles, employess, and depa
 
 ## Installation
 
-In order to run this application you must run 'npm i' in the terminal. Then the user must source the schema and seeds sql files. Lastly, T the user must run 'node start' in their terminal to run the application.
+Before starting the application the user must update their password in the server.js file on line 9. In order to run this application you must run 'npm i' in the terminal. Then the user must source the schema and seeds sql files. Lastly, the user must run 'node start' in their terminal to run the application.
 
 ## Questions
 
