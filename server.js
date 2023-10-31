@@ -6,7 +6,7 @@ const db = mysql2.createConnection(
   {
     host: "localhost",
     user: "root",
-    password: "",
+    password: "Sharks12$",
     database: "employee_db",
   },
   console.log(`Connected to the employee_db database.`)
@@ -39,8 +39,8 @@ function init() {
         viewEmployees(res);
       } else if (res.starter === "Add Employees") {
         addEmployees(res);
-      } else if (res.starter === "Update Employees") {
-        updateEmplyees(res);
+      } else if (res.starter === "Update Employee") {
+        updateEmployees(res);
       } else if (res.starter === "View All Roles") {
         viewRoles(res);
       } else if (res.starter === "Add Role") {
@@ -49,7 +49,10 @@ function init() {
         viewDepartments(res);
       } else if (res.starter === "Add Department") {
         addDepartments(res);
-      } else console.log("See you next time!");
+      } else {
+        console.log("See you next time!");
+        process.exit();
+      }
     });
 }
 
@@ -118,10 +121,47 @@ function addEmployees() {
     );
   });
 }
-function updateEmplyees(res) {
-  console.log(`You Chose`, res.starter);
+function updateEmployees() {
+  db.query(`SELECT * FROM employee`, (err, res) => {
+    db.query(`SELECT * FROM role`, (err, resTwo) => {
+      inquirer
+        .prompt([
+          {
+            type: "list",
+            name: "employee",
+            message: "please select the employee.",
+            choices: res.map(
+              (employee) => `${employee.first_name} ${employee.last_name}`
+            ),
+          },
+          {
+            type: "list",
+            name: "role",
+            message: "Please select the NEW role.",
+            choices: resTwo.map((role) => role.title),
+          },
+        ])
+        .then((data) => {
+          db.query(
+            `UPDATE employee SET role_id = ? WHERE id = ?`,
+            [
+              resTwo.find((role) => role.title === data.role).id,
+              res.find(
+                (employee) =>
+                  `${employee.first_name} ${employee.last_name}` ===
+                  data.employee
+              ).id,
+            ],
+            (err, res) => {
+              console.log("Employee role has been updated");
+              init();
+            }
+          );
+        });
+    });
+  });
 }
-function viewRoles(res) {
+function viewRoles() {
   const query = "SELECT * FROM role";
   db.query(query, (req, res) => {
     console.table(res);
