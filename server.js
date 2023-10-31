@@ -76,8 +76,45 @@ function viewRoles(res) {
   });
   init();
 }
-function addRoles(res) {
-  console.log(`You Chose`, res.starter);
+function addRoles() {
+  const query = "SELECT * FROM department";
+  db.query(query, (req, res) => {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "title",
+          message: "What is the title of the role?",
+        },
+        {
+          type: "input",
+          name: "salary",
+          message: "What is the salary of the role?",
+        },
+        {
+          type: "list",
+          name: "department",
+          message: "Please select the department with this role.",
+          choices: res.map((department) => department.name),
+        },
+      ])
+      .then((data) => {
+        const query = "INSERT INTO role SET ?";
+        const department = res.find(
+          (department) => department.name === res.department
+        );
+        db.query(
+          query,
+          {
+            title: data.title,
+            salary: data.salary,
+            department_id: department,
+          },
+          console.log(`New role has been added.`)
+        );
+        init();
+      });
+  });
 }
 function viewDepartments() {
   const query = "SELECT * FROM department";
