@@ -6,7 +6,7 @@ const db = mysql2.createConnection(
   {
     host: 'localhost',
     user: 'root',
-    password: 'Sharks12$',
+    password: '',
     database: 'employee_db'
   },
   console.log(`Connected to the employee_db database.`)
@@ -74,5 +74,3 @@ function viewDepartments(res) {
 function addDepartments(res) {
   console.log(`You Chose`, res.starter);
 }
-
-
