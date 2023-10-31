@@ -6,12 +6,16 @@ const db = mysql2.createConnection(
   {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Sharks12$',
     database: 'employee_db'
   },
   console.log(`Connected to the employee_db database.`)
 )
 
+db.connect((err) => {
+  if (err) throw err;
+  init()
+})
 
 function init() {
   inquirer
@@ -71,4 +75,4 @@ function addDepartments(res) {
   console.log(`You Chose`, res.starter);
 }
 
-init();
+
