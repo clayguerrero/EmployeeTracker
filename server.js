@@ -6,7 +6,7 @@ const db = mysql2.createConnection(
   {
     host: "localhost",
     user: "root",
-    password: "",
+    password: "Sharks12$",
     database: "employee_db",
   },
   console.log(`Connected to the employee_db database.`)
@@ -171,7 +171,6 @@ function viewRoles() {
 function addRole() {
     const query = "SELECT * FROM department";
   db.query(query, (req, res) => {
-      console.log(res)
       inquirer
         .prompt([
           {
